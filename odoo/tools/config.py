@@ -257,6 +257,14 @@ class configmanager(object):
                          help="Use the unaccent function provided by the database when available.")
         group.add_option("--geoip-db", dest="geoip_database", my_default='/usr/share/GeoIP/GeoLiteCity.dat',
                          help="Absolute path to the GeoIP database file.")
+        group.add_option("--db-idle-connection-timeout",
+                         dest="db_idle_connection_timeout", my_default=0.0,
+                         help="Close idle postgres connections after a timeout."
+                              "This is a decimal value expressed in seconds."
+                              "1h=3600.0s, 2h=7200.0s, 3h=10800.0s ..."
+                              "0.0 is default odoo behavior leaving database "
+                              "connections open indefinitely",
+                         type="float")
         parser.add_option_group(group)
 
         if os.name == 'posix':
@@ -410,6 +418,7 @@ class configmanager(object):
             'osv_memory_count_limit', 'osv_memory_age_limit', 'max_cron_threads', 'unaccent',
             'data_dir',
             'server_wide_modules',
+            'db_idle_connection_timeout',
         ]
 
         posix_keys = [
