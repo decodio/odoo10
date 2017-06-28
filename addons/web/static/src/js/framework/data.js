@@ -166,7 +166,8 @@ var Query = Class.extend({
             offset: this._offset,
             lazy: this._lazy,
             limit: this._limit,
-            orderby: serialize_sort(this._order_by) || false
+            orderby: serialize_sort(this._order_by) || ctx['order_by'] || false
+
         }).then(function (results) {
             return _(results).map(function (result) {
                 // FIX: querygroup initialization
