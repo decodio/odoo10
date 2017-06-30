@@ -63,7 +63,7 @@ class TestViewSaving(common.TransactionCase):
 
         self.env['ir.ui.view'].save_embedded_field(embedded)
 
-        company = self.env['res.company'].browse(1)
+        company = self.env.ref('base.main_company')  # self.env['res.company'].browse(1)
         self.assertEqual(company.phone, "+00 00 000 00 0 000")
 
     @unittest.skip("save conflict for embedded (saved by third party or previous version in page) not implemented")
@@ -170,7 +170,7 @@ class TestViewSaving(common.TransactionCase):
         # the xml_id of the view should be flagged as 'noupdate'
         self.assertTrue(imd.noupdate)
 
-        company = Company.browse(1)
+        company = self.env.ref('base.main_company')  # Company.browse(1)
         self.assertEqual(company.name, "Acme Corporation")
         self.assertEqual(company.phone, "+12 3456789")
         self.eq(

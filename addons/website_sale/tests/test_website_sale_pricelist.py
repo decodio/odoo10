@@ -13,7 +13,7 @@ class TestWebsitePriceList(TransactionCase):
     def setUp(self):
         super(TestWebsitePriceList, self).setUp()
         self.env.user.partner_id.country_id = False  # Remove country to avoid property pricelist computed.
-        self.website = self.env['website'].browse(1)
+        self.website = self.env.ref('website.default_website')  # self.env['website'].browse(1)
         self.website.user_id = self.env.user
 
         self.env['product.pricelist'].search([]).write({'website_id': False})

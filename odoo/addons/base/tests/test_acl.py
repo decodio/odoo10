@@ -62,7 +62,8 @@ class TestACL(TransactionCase):
     @mute_logger('odoo.models')
     def test_field_crud_restriction(self):
         "Read/Write RPC access to restricted field should be forbidden"
-        partner = self.env['res.partner'].browse(1).sudo(self.demo_user)
+        #partner = self.env['res.partner'].browse(1).sudo(self.demo_user)
+        partner = self.env.ref('base.main_partner').sudo(self.demo_user)
 
         # Verify the test environment first
         has_group_system = self.demo_user.has_group(GROUP_SYSTEM)

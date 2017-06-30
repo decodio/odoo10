@@ -1108,7 +1108,7 @@ class Boolean(Field):
 
 class Integer(Field):
     type = 'integer'
-    column_type = ('int4', 'int4')
+    column_type = ('int8', 'int8')
     _slots = {
         'group_operator': 'sum',
     }
@@ -1163,8 +1163,11 @@ class Float(Field):
         # with all significant digits.
         # FLOAT8 type is still the default when there is no precision because it
         # is faster for most operations (sums, etc.)
-        return ('numeric', 'numeric') if self.digits is not None else \
-               ('float8', 'double precision')
+        #return ('numeric', 'numeric') if self.digits is not None else \
+        #       ('float8', 'double precision')
+
+        # Preferring precision over speed
+        return ('numeric', 'numeric')
 
     @property
     def digits(self):
@@ -1674,7 +1677,8 @@ class Selection(Field):
         if (self.selection and
                 isinstance(self.selection, list) and
                 isinstance(self.selection[0][0], int)):
-            return ('int4', 'integer')
+            # return ('int4', 'integer') # why 'integer'?
+            return ('int8', 'int8')
         else:
             return ('varchar', pg_varchar())
 
@@ -1864,7 +1868,7 @@ class Many2one(_Relational):
     fields or field extensions.
     """
     type = 'many2one'
-    column_type = ('int4', 'int4')
+    column_type = ('int8', 'int8')
     _slots = {
         'ondelete': 'set null',         # what to do when value is deleted
         'auto_join': False,             # whether joins are generated upon search
@@ -2306,7 +2310,7 @@ class Many2many(_RelationalMulti):
             if self.comodel_name not in model.env:
                 raise UserError(_('Many2many comodel does not exist: %r') % (self.comodel_name,))
             comodel = model.env[self.comodel_name]
-            cr.execute('CREATE TABLE "%s" ("%s" INTEGER NOT NULL, "%s" INTEGER NOT NULL, UNIQUE("%s","%s"))' % (rel, id1, id2, id1, id2))
+            cr.execute('CREATE TABLE "%s" ("%s" BIGINT NOT NULL, "%s" BIGINT NOT NULL, UNIQUE("%s","%s"))' % (rel, id1, id2, id1, id2))
             # create foreign key references with ondelete=cascade, unless the targets are SQL views
             cr.execute("SELECT relkind FROM pg_class WHERE relkind IN ('v') AND relname=%s", (comodel._table,))
             if not cr.fetchall():
@@ -2422,7 +2426,7 @@ class Serialized(Field):
 class Id(Field):
     """ Special case for field 'id'. """
     type = 'integer'
-    column_type = ('int4', 'int4')
+    column_type = ('int8', 'int8')
     _slots = {
         'string': 'ID',
         'store': True,

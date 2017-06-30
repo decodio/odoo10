@@ -46,6 +46,11 @@ for name, typeoid in types_mapping.items():
     psycopg2.extensions.register_type(psycopg2.extensions.new_type(typeoid, name, lambda x, cr: x))
 psycopg2.extensions.register_type(psycopg2.extensions.new_type((700, 701, 1700,), 'float', undecimalize))
 
+#+KGB INT, BIGINT TO python INT to avoid long Python int on 64bit ubuntu server is 64bit, no need for long
+psycopg2.extensions.register_type(
+    psycopg2.extensions.new_type((20,23,), 'int',
+                                 lambda value, curs: int(value) if value is not None else None))
+
 
 import tools
 

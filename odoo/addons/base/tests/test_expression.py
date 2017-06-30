@@ -429,7 +429,7 @@ class TestExpression(TransactionCase):
         currency = Currency.create({'name': 'ZZZ', 'symbol': 'ZZZ', 'rounding': 1.0})
         currency_rate = CurrencyRate.create({'name': '2010-01-01', 'currency_id': currency.id, 'rate': 1.0})
         non_currency_id = currency_rate.id + 1000
-        default_currency = Currency.browse(1)
+        default_currency = self.env.ref('base.EUR')  # Currency.browse(1)
 
         # search the currency via its rates one2many (the one2many must point back at the currency)
         currency_rate1 = CurrencyRate.search([('name', 'not like', 'probably_unexisting_name')])

@@ -67,7 +67,8 @@ class TestIntegerExport(TestBasicExport):
 class TestFloatExport(TestBasicExport):
     def setUp(self):
         super(TestFloatExport, self).setUp()
-        self.env['res.lang'].browse(1).write({'grouping': '[3,0]'})
+        #self.env['res.lang'].browse(1).write({'grouping': '[3,0]'})
+        self.env.ref('base.lang_en).write({'grouping': '[3,0]'})
 
     def test_float(self):
         converter = self.get_converter('float')

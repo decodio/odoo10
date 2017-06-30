@@ -633,7 +633,7 @@ class BaseModel(object):
 
             cls._sql_constraints += base._sql_constraints
 
-        cls._sequence = cls._sequence or (cls._table + '_id_seq')
+        cls._sequence = cls._sequence or 'ir_serial_id_seq'  # (cls._table + '_id_seq')
         cls._constraints = cls._constraints.values()
 
         # update _inherits_children of parent models
@@ -2396,6 +2396,7 @@ class BaseModel(object):
                                 ('text', 'char', column_type[1], '::' + column_type[1]),
                                 ('varchar', 'text', 'TEXT', ''),
                                 ('int4', 'float', column_type[1], '::' + column_type[1]),
+                                ('int8', 'float', column_type[1], '::' + column_type[1]),
                                 ('date', 'datetime', 'TIMESTAMP', '::TIMESTAMP'),
                                 ('timestamp', 'date', 'date', '::date'),
                                 ('numeric', 'float', column_type[1], '::' + column_type[1]),
@@ -2595,7 +2596,14 @@ class BaseModel(object):
 
     @api.model_cr
     def _create_table(self):
-        self._cr.execute('CREATE TABLE "%s" (id SERIAL NOT NULL, PRIMARY KEY(id))' % (self._table,))
+        if self.is_transient():
+            self._cr.execute('CREATE TABLE "%s" (id BIGSERIAL NOT NULL, PRIMARY KEY(id))' % (self._table,))
+        else:
+            self._cr.execute("""
+                CREATE TABLE "%s"
+                       (id bigint NOT NULL DEFAULT nextval('ir_serial_id_seq'),
+                        PRIMARY KEY(id))  WITHOUT OIDS
+                """ % (self._table,))
         self._cr.execute("COMMENT ON TABLE \"%s\" IS %%s" % self._table, (self._description,))
         _schema.debug("Table '%s': created", self._table)
 
@@ -2608,16 +2616,16 @@ class BaseModel(object):
 
     @api.model_cr
     def _create_parent_columns(self):
-        self._cr.execute('ALTER TABLE "%s" ADD COLUMN "parent_left" INTEGER' % (self._table,))
-        self._cr.execute('ALTER TABLE "%s" ADD COLUMN "parent_right" INTEGER' % (self._table,))
+        self._cr.execute('ALTER TABLE "%s" ADD COLUMN "parent_left" BIGINT' % (self._table,))
+        self._cr.execute('ALTER TABLE "%s" ADD COLUMN "parent_right" BIGINT' % (self._table,))
         if 'parent_left' not in self._fields:
             _logger.error("add a field parent_left on model %s: parent_left = fields.Integer('Left Parent', index=True)", self._name)
-            _schema.debug("Table '%s': added column '%s' with definition=%s", self._table, 'parent_left', 'INTEGER')
+            _schema.debug("Table '%s': added column '%s' with definition=%s", self._table, 'parent_left', 'BIGINT')
         elif not self._fields['parent_left'].index:
             _logger.error('parent_left field on model %s must be indexed! Add index=True to the field definition)', self._name)
         if 'parent_right' not in self._fields:
             _logger.error("add a field parent_right on model %s: parent_right = fields.Integer('Left Parent', index=True)", self._name)
-            _schema.debug("Table '%s': added column '%s' with definition=%s", self._table, 'parent_right', 'INTEGER')
+            _schema.debug("Table '%s': added column '%s' with definition=%s", self._table, 'parent_right', 'BIGINT')
         elif not self._fields['parent_right'].index:
             _logger.error("parent_right field on model %s must be indexed! Add index=True to the field definition)", self._name)
         if self._fields[self._parent_name].ondelete not in ('cascade', 'restrict'):
@@ -3863,7 +3871,7 @@ class BaseModel(object):
         # Those tuples will be used by the string formatting for the INSERT
         # statement below.
         updates = [
-            ('id', "nextval('%s')" % self._sequence),
+            # ('id', "nextval('%s')" % self._sequence), # Use db default for id
         ]
 
         upd_todo = []
