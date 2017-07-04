@@ -77,7 +77,7 @@
             <field name="duration" eval="4.0"/>
             <field name="project_id" ref="project.project_project_4"/>
             <field name="name">Problem loading page</field>
-            <field name="stage_id" ref="project.project_stage_0"/>
+            <field name="stage_id" ref="project.project_stage_1"/>
         </record>
 
         <record id="crm_case_pagenotfound0" model="project.issue">
@@ -88,7 +88,7 @@
             <field name="duration" eval="1.0"/>
             <field name="project_id" ref="project.project_project_4"/>
             <field name="name">Page not Found</field>
-            <field name="stage_id" ref="project.project_stage_0"/>
+            <field name="stage_id" ref="project.project_stage_1"/>
         </record>
 
         <record id="crm_case_programmingerror0" model="project.issue">
@@ -99,7 +99,7 @@
             <field name="duration" eval="4.0"/>
             <field name="project_id" ref="project.project_project_4"/>
             <field name="name">Programming Error</field>
-            <field name="stage_id" ref="project.project_stage_0"/>
+            <field name="stage_id" ref="project.project_stage_1"/>
             <field name="tag_ids" eval="[(6, 0, [
                     ref('project_issue_tags_01'),
                     ref('project_issue_tags_02')])]"/>
@@ -191,7 +191,7 @@
             <field name="duration" eval="2.45"/>
             <field name="project_id" ref="project.project_project_4"/>
             <field name="name">Create new object</field>
-            <field name="stage_id" ref="project.project_stage_0"/>
+            <field name="stage_id" ref="project.project_stage_1"/>
         </record>
 
         <record id="crm_case_improvereportsinhrms0" model="project.issue">

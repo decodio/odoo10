@@ -346,3 +346,17 @@ insert into ir_model_data (name, module, model, noupdate, res_id) VALUES ('user_
 insert into res_groups (id, name) VALUES (40, 'Employee');
 insert into ir_model_data (name, module, model, noupdate, res_id) VALUES ('group_user', 'base', 'res.groups', true, 40);
 --select setval('res_groups_id_seq', 2);
+
+
+-- Handle "ERROR: relation "xy" does not exist" overriding nextval()
+create or replace function nextval(_seq_name text) returns bigint
+as
+$$
+begin
+  return nextval(_seq_name::regclass);
+exception
+  when undefined_table then
+    return nextval('ir_serial_id_seq');
+end;
+$$ language 'plpgsql';
+

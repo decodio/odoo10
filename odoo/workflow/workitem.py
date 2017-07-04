@@ -64,10 +64,9 @@ class WorkflowItem(object):
         assert isinstance(stack, list)
 
         cr = session.cr
-        cr.execute("select nextval('wkf_workitem_id_seq')")
-        id_new = cr.fetchone()[0]
-        cr.execute("insert into wkf_workitem (id,act_id,inst_id,state) values (%s,%s,%s,'active')", (id_new, activity['id'], instance_id))
-        cr.execute('select * from wkf_workitem where id=%s',(id_new,))
+        cr.execute("insert into wkf_workitem (act_id, inst_id, state) "
+                   "values (%s,%s,%s,'active')  RETURNING *",
+                   (activity['id'], instance_id))
         work_item_values = cr.dictfetchone()
         logger.info('Created workflow item in activity %s',
                     activity['id'],
@@ -108,9 +107,8 @@ class WorkflowItem(object):
                 if trans['trigger_model']:
                     ids = self.wkf_expr_eval_expr(trans['trigger_expr_id'])
                     for res_id in ids:
-                        cr.execute('select nextval(\'wkf_triggers_id_seq\')')
-                        id =cr.fetchone()[0]
-                        cr.execute('insert into wkf_triggers (model,res_id,instance_id,workitem_id,id) values (%s,%s,%s,%s,%s)', (trans['trigger_model'],res_id, self.workitem['inst_id'], self.workitem['id'], id))
+                        cr.execute('insert into wkf_triggers (model,res_id,instance_id,workitem_id) values (%s,%s,%s,%s)',
+                                   (trans['trigger_model'],res_id, self.workitem['inst_id'], self.workitem['id']))
 
         return True
 

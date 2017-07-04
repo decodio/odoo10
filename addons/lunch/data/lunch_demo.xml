@@ -177,7 +177,7 @@
             <field name="date" eval="(DateTime.now() + timedelta(days=2)).strftime('%Y-%m-%d')"/>
             <field name="description">Pizza Italiana</field>
             <field name="amount">-7.40</field>
-            <field name="order_id" ref="order_2"/>
+            <field name="order_id" ref="order_line_2"/>
             <field name="state">order</field>
         </record>
 
@@ -186,7 +186,7 @@
             <field name="date" eval="(DateTime.now() + timedelta(days=3)).strftime('%Y-%m-%d')"/>
             <field name="description">Chicken curry</field>
             <field name="amount">-2.60</field>
-            <field name="order_id" ref="order_3"/>
+            <field name="order_id" ref="order_line_3"/>
             <field name="state">order</field>
         </record>
 
