@@ -65,7 +65,7 @@ class WorkflowItem(object):
 
         cr = session.cr
         cr.execute("insert into wkf_workitem (act_id, inst_id, state) "
-                   "values (%s,%s,%s,'active')  RETURNING *",
+                   "values (%s,%s,'active')  RETURNING *",
                    (activity['id'], instance_id))
         work_item_values = cr.dictfetchone()
         logger.info('Created workflow item in activity %s',
