@@ -619,7 +619,7 @@ class ConnectionPool(object):
                     self._debug('Idle connection timeout. Closing %r.', cnx.dsn)
                     cnx.close()
         else:
-            raise PoolError('This connection does not below to the pool')
+            raise PoolError('This connection does not belong to the pool')
 
     @locked
     def _clear_old_ones(self):
