@@ -1017,8 +1017,14 @@ class Field(object):
             if self.recursive:
                 self.compute_value(record)
             else:
-                recs = record._in_cache_without(self)
-                recs = recs.with_prefetch(record._prefetch)
+                # DECODIO recs = record._in_cache_without(self)
+                # DECODIO recs = recs.with_prefetch(record._prefetch)
+                if self.prefetch:
+                    recs = record._in_cache_without(self)
+                    recs = recs.with_prefetch(record._prefetch)
+                else:
+                    recs = record
+                # DECODIO End: from hbrunn:10.0-compute-honor-prefetch-odoo
                 self.compute_value(recs)
 
         else:
