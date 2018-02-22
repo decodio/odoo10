@@ -8042,7 +8042,7 @@ msgstr "Kontaktid"
 #. module: base
 #: model:ir.ui.view,arch_db:base.view_partner_form
 msgid "Contacts & Addresses"
-msgstr ""
+msgstr "Kontaktid ja aadressid"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_contacts
@@ -10316,7 +10316,7 @@ msgstr ""
 #: code:addons/base/res/res_config.py:663
 #, python-format
 msgid "Go to the configuration panel"
-msgstr ""
+msgstr "Mine seadistuste paneelile"
 
 #. module: base
 #: model:res.partner.category,name:base.res_partner_category_4
@@ -18902,7 +18902,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:base.view_partner_form
 #: model:ir.ui.view,arch_db:base.view_partner_simple_form
 msgid "e.g. Sales Director"
-msgstr ""
+msgstr "nt müühijuht"
 
 #. module: base
 #: model:ir.ui.view,arch_db:base.view_server_action_form
