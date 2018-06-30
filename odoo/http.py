@@ -299,6 +299,11 @@ class WebRequest(object):
                 and not isinstance(exception, werkzeug.exceptions.HTTPException):
             odoo.tools.debugger.post_mortem(
                 odoo.tools.config, sys.exc_info())
+        # otherwise "no active exception to reraise"
+        #raise pycompat.reraise(type(exception), exception, sys.exc_info()[2])
+        ##if exception.__traceback__ != sys.exc_info()[2]:
+        ##    raise exception.with_traceback(sys.exc_info()[2])
+        #raise exception
         raise
 
     def _call_function(self, *args, **kwargs):
@@ -884,7 +889,7 @@ more details.
 #----------------------------------------------------------
 # Controller and route registration
 #----------------------------------------------------------
-addons_module = {}
+#addons_module = {}
 addons_manifest = {}
 controllers_per_module = collections.defaultdict(list)
 
@@ -1332,7 +1337,7 @@ class Root(object):
         statics = {}
         for addons_path in odoo.modules.module.ad_paths:
             for module in sorted(os.listdir(str(addons_path))):
-                if module not in addons_module:
+                if module not in addons_manifest:
                     mod_path = opj(addons_path, module)
                     manifest_path = module_manifest(mod_path)
                     path_static = opj(addons_path, module, 'static')
@@ -1350,7 +1355,7 @@ class Root(object):
                         #    m = None
                         #addons_module[module] = m
                         #
-                        addons_module[module] = True
+                        #addons_module[module] = True
                         addons_manifest[module] = manifest
                         statics['/%s/static' % module] = path_static
 
