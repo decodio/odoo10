@@ -2605,11 +2605,15 @@ class BaseModel(object):
         if self.is_transient():
             self._cr.execute('CREATE TABLE "%s" (id BIGSERIAL NOT NULL, PRIMARY KEY(id))' % (self._table,))
         else:
+            # Create a PostreSQL sequence
+            sequence_name = self._sequence or 'ir_serial_id_seq'
+            sql = "CREATE SEQUENCE IF NOT EXISTS %s " % sequence_name
+            self._cr.execute(sql)
             self._cr.execute("""
                 CREATE TABLE "%s"
-                       (id bigint NOT NULL DEFAULT nextval('ir_serial_id_seq'),
+                       (id bigint NOT NULL DEFAULT nextval('%s'),
                         PRIMARY KEY(id))  WITHOUT OIDS
-                """ % (self._table,))
+                """ % (self._table, sequence_name))
         self._cr.execute("COMMENT ON TABLE \"%s\" IS %%s" % self._table, (self._description,))
         _schema.debug("Table '%s': created", self._table)
 
