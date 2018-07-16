@@ -828,8 +828,8 @@ class StockMove(models.Model):
             qty = operation.product_qty
             if operation.product_uom_id and operation.product_uom_id != operation.product_id.uom_id:
                 qty = operation.product_uom_id._compute_quantity(qty, operation.product_id.uom_id)
-            if operation.pack_lot_ids and float_compare(sum(lot_quantities.values()), qty, precision_rounding=operation.product_id.uom_id.rounding) != 0.0:
-                raise UserError(_('You have a difference between the quantity on the operation and the quantities specified for the lots. '))
+            #KGB if operation.pack_lot_ids and float_compare(sum(lot_quantities.values()), qty, precision_rounding=operation.product_id.uom_id.rounding) != 0.0:
+            #KGB    raise UserError(_('You have a difference between the quantity on the operation and the quantities specified for the lots. '))
 
             quants_taken = []
             false_quants = []
