@@ -8,6 +8,7 @@
 # kalatchev, 2016
 # Anton Vassilev, 2016
 # preslav <hackerz99999@gmail.com>, 2016
+# Maria Boyadjieva <marabo2000@gmail.com>, 2016
 # Vladimir Dachev <v.dachev@dalkomotors.com>, 2016
 # Vladimir Petrov <vladimir.petrov@gmail.com>, 2017
 # Albena Mincheva <albena_vicheva@abv.bg>, 2018
@@ -171,7 +172,7 @@ msgstr ""
 #. module: mass_mailing
 #: model:ir.ui.view,arch_db:mass_mailing.s_mail_block_comparison_table
 msgid "<small>user / month (billed annually)</small>"
-msgstr ""
+msgstr "<small>потребител / месец (ежегодно таксуван)</small>"
 
 #. module: mass_mailing
 #: model:ir.ui.view,arch_db:mass_mailing.s_mail_block_footer_social
@@ -609,7 +610,7 @@ msgstr "Домейн"
 #: selection:mail.statistics.report,state:0
 #, python-format
 msgid "Draft"
-msgstr "Проект"
+msgstr "Чернова"
 
 #. module: mass_mailing
 #: model:ir.ui.view,arch_db:mass_mailing.view_mail_mass_mailing_campaign_form
@@ -1097,7 +1098,7 @@ msgstr "Повече"
 #: model:ir.ui.view,arch_db:mass_mailing.s_mail_block_event
 #: model:ir.ui.view,arch_db:mass_mailing.view_mass_mailing_configuration
 msgid "More Info"
-msgstr ""
+msgstr "Повече информация"
 
 #. module: mass_mailing
 #: model:ir.ui.view,arch_db:mass_mailing.s_mail_block_footer_tag_line
