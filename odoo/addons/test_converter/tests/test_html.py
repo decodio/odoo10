@@ -74,7 +74,7 @@ class TestFloatExport(TestBasicExport):
         converter = self.get_converter('float')
 
         value = converter(-42.0)
-        self.assertEqual(value, u"\u201142.0")
+        self.assertEqual(value, u"-\N{ZERO WIDTH NO-BREAK SPACE}42.0")
 
         value = converter(42.0100)
         self.assertEqual(value, "42.01")
@@ -121,7 +121,7 @@ class TestCurrencyExport(TestExport):
         converted = self.convert(obj, dest=currency)
 
         self.assertEqual(
-            converted, u'<span class="oe_currency_value">\u20110.12</span>'
+            converted, u'<span class="oe_currency_value">-\N{ZERO WIDTH NO-BREAK SPACE}0.12</span>'
                        u'\N{NO-BREAK SPACE}{symbol}'.format(
                 obj=obj,
                 symbol=currency.symbol.encode('utf-8')

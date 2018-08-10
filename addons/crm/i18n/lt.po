@@ -327,6 +327,10 @@ msgid ""
 "                        use our API to load data through scripts: read\n"
 "                        the"
 msgstr ""
+"<span class=\"fa fa-lightbulb-o fa-lg\"/>\n"
+"                        <strong>Patarimas:</strong> Programuotojai gali\n"
+"                        naudoti mūsų API ir užkraut duomenis per skriptus:\n"
+"                        skaitykite"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
@@ -583,7 +587,7 @@ msgstr "<strong>Pvz.: Derybų stadija</strong>"
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
 msgid "<strong>Example: Qualified stage</strong>"
-msgstr ""
+msgstr "<strong>Pavyzdys: Kvalifikuota stadija</strong>"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
@@ -618,6 +622,8 @@ msgid ""
 "<strong>For complex imports</strong> (&gt;5000 items, product variants, "
 "pictures, etc.):"
 msgstr ""
+"<strong>Sudėtingiems importavimams</strong> (daugiau nei 5000 prekių, "
+"produkto variantų, paveikslėlių ir pan.):"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
@@ -856,7 +862,7 @@ msgstr ""
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
 msgid "Activate the 'Online Quotations' option in"
-msgstr ""
+msgstr "Aktyvuokite \"Komerciniai pasiūlymai internetu\" pasirinkimą, esantį"
 
 #. module: crm
 #: model:ir.model.fields,help:crm.field_crm_activity_default
@@ -1002,6 +1008,9 @@ msgid ""
 "efficiently forecast its future revenues. The pipeline review will allow you"
 " to identify sales inefficiencies or pick up on the best practices."
 msgstr ""
+"Piltuvėlio analizė pagal planuojamą užbaigimo datą padės jūsų komandai "
+"efektyviai prognozuoti savo ateities pelną. Piltuvėlio peržiūra leis jums "
+"identifikuoti pardavimų trūkumus ir surasti geriausias darbo praktikas."
 
 #. module: crm
 #: model:ir.model.fields,field_description:crm.field_crm_lead2opportunity_partner_mass_deduplicate
@@ -1151,7 +1160,7 @@ msgstr "CRM galimybių analizė"
 #: model:crm.activity,name:crm.crm_activity_data_call
 #: model:mail.message.subtype,name:crm.crm_activity_data_call_mail_message_subtype
 msgid "Call"
-msgstr ""
+msgstr "Skambutis"
 
 #. module: crm
 #: model:crm.activity,name:crm.crm_activity_demo_call_demo
@@ -1200,7 +1209,7 @@ msgstr "Pakeisti tikimybę automatiškai"
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
 msgid "Change the layout of a quotation"
-msgstr ""
+msgstr "Keisti komercinio pasiūlymo išdėstymą"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_lost_reason_view_form
@@ -1316,6 +1325,7 @@ msgstr "Uždarymo data"
 #, python-format
 msgid "Closed/Dead leads cannot be converted into opportunities."
 msgstr ""
+"Uždaryti/neaktyvūs šaltieji kontaktai negali būti paversti galimybėmis."
 
 #. module: crm
 #: model:ir.model.fields,field_description:crm.field_crm_lead_color
@@ -1326,7 +1336,7 @@ msgstr "Spalvos indeksas"
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
 msgid "Community &amp; Enterprise users:"
-msgstr ""
+msgstr "Community &amp; Enterprise vartotojai"
 
 #. module: crm
 #: model:ir.model.fields,field_description:crm.field_crm_activity_report_company_id
@@ -1944,7 +1954,7 @@ msgstr "EXCEL šablonas"
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.view_crm_case_leads_filter
 msgid "Exclude Opt Out"
-msgstr ""
+msgstr "Neįtraukti atsisakymo"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.base_partner_merge_automatic_wizard_form
@@ -1983,7 +1993,7 @@ msgstr "Numatomos pajamos"
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_opportunity_report_view_search
 msgid "Expiration Closing Month"
-msgstr ""
+msgstr "Uždarymo galiojimo mėnuo"
 
 #. module: crm
 #: model:ir.model.fields,help:crm.field_crm_stage_legend_priority
@@ -2154,7 +2164,7 @@ msgstr "Kontaktų grupė"
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
 msgid "Grow leads acquisition"
-msgstr ""
+msgstr "Didesnis šaltųjų kontaktų kiekis"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
@@ -2164,7 +2174,7 @@ msgstr "Padidinkite pajamas"
 #. module: crm
 #: model:ir.model,name:crm.model_crm_partner_binding
 msgid "Handle partner binding or generation in CRM wizards."
-msgstr ""
+msgstr "Tvarkykite partnerių susiejimą ar generavimą CRM vedliuose."
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
@@ -2257,6 +2267,9 @@ msgid ""
 "mailing and marketing campaign. Filter 'Available for Mass Mailing' allows "
 "users to filter the leads when performing mass mailing."
 msgstr ""
+"Jei pažymėtas atsisakymas, šis kontaktas nesutiko gauti masinio siuntimo el."
+" laiškų ir rinkodaros kampanijų. Fltravimas pagal \"Galimas masiniam laiškų "
+"siuntimui\" leidžia atskirti kontaktus masiniam laiškų siuntimui."
 
 #. module: crm
 #: model:ir.model.fields,help:crm.field_crm_lead2opportunity_partner_mass_force_assignation
@@ -2490,7 +2503,7 @@ msgstr "Iniciatyva/Galimybė"
 #. module: crm
 #: model:ir.actions.act_window,name:crm.action_lead_mass_mail
 msgid "Lead/Opportunity Mass Mail"
-msgstr ""
+msgstr "Šaltųjų kontaktų/galimybių masinis paštas"
 
 #. module: crm
 #: model:ir.actions.act_window,name:crm.crm_case_form_view_salesteams_lead
@@ -2533,6 +2546,10 @@ msgid ""
 "the treatment delays or number of leads per state. You can sort out your "
 "leads analysis by different groups to get accurate grained analysis."
 msgstr ""
+"Šaltųjų kontaktų analizė leidžia jums patikrinti įvairią CRM informaciją, "
+"tokią kaip vėlavimai ar kontaktų skaičius kiekvienai būsenai. Galite "
+"rūšiuoti savo kontaktų analizę pagal skirtingas grupes ir gauti tikslius "
+"duomenis."
 
 #. module: crm
 #: model:ir.filters,name:crm.filter_opportunity_salesperson
@@ -2582,6 +2599,8 @@ msgid ""
 "Leads that you selected that have duplicates. If the list is empty, it means"
 " that no duplicates were found"
 msgstr ""
+"Jūsų pasirinkti šaltieji kontaktai, kurie turi dublikatus. Jei sąrašas yra "
+"tuščias, reiškia, dublikatų rasta nebuvo."
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.view_crm_lead2opportunity_partner_mass
@@ -2987,7 +3006,7 @@ msgstr "Nauja galimybė"
 #: code:addons/crm/static/src/js/web_planner_crm.js:17
 #, python-format
 msgid "New propspect assigned to the right salesperson"
-msgstr ""
+msgstr "Nauja perspektyva priskirta tinkamam pardavėjui"
 
 #. module: crm
 #: model:ir.model.fields,field_description:crm.field_crm_lead_date_action_next
@@ -3162,6 +3181,8 @@ msgid ""
 "Once qualified, the lead can be converted into a business\n"
 "                    opportunity and/or a new customer in your address book."
 msgstr ""
+"Kai kvalifikuojamas, šaltasis kontaktas gali būti paverčiamas\n"
+"į verslo galimybę ir/ar naują klientą jūsų adresų knygoje."
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
@@ -3188,6 +3209,9 @@ msgid ""
 " ask the Administrator if you need to merge several contacts linked to "
 "existing Journal Items."
 msgstr ""
+"Tik tikslo kontaktas gali būti susietas su egzistuojančiais žurnalo įrašais."
+" Jei jums reikia apjungti kelis kontaktus, susietus su egzistuojančiais "
+"žurnalo įrašais, kreipkitės į administratorių."
 
 #. module: crm
 #: model:ir.actions.act_window,name:crm.crm_case_form_view_salesteams_opportunity
@@ -3238,12 +3262,12 @@ msgstr ""
 #. module: crm
 #: model:ir.filters,name:crm.filter_opportunity_opportunities_won_per_team
 msgid "Opportunities Won Per Team"
-msgstr ""
+msgstr "Laimėtos galimybės pagal komandą"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
 msgid "Opportunities pipeline"
-msgstr ""
+msgstr "Galimybių piltuvėlis"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.view_crm_case_opportunities_filter
@@ -3397,6 +3421,9 @@ msgid ""
 " named. For example on a project, the parent_id of project subtypes refers "
 "to task-related subtypes."
 msgstr ""
+"Tėvinis potipis, naudojamas automatiniam prenumeravimui. Šis laukas "
+"neteisingai pavadintas. Pavyzdžiui, projekte projekto potipių parent_id "
+"nurodo su užduotimi susijusius potipius."
 
 #. module: crm
 #: model:ir.model,name:crm.model_res_partner
@@ -3440,14 +3467,14 @@ msgstr "Skambutis telefonu su šiais klausimais: ..."
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
 msgid "Phone scripts"
-msgstr ""
+msgstr "Telefono skriptai"
 
 #. module: crm
 #: model:ir.ui.menu,name:crm.crm_opportunity_report_menu
 #: model:ir.ui.view,arch_db:crm.crm_planner
 #: model:ir.ui.view,arch_db:crm.crm_team_salesteams_view_kanban
 msgid "Pipeline"
-msgstr ""
+msgstr "Piltuvėlis"
 
 #. module: crm
 #: model:ir.actions.act_window,name:crm.action_report_crm_opportunity_salesteam
@@ -3488,6 +3515,8 @@ msgstr ""
 #: model:web.planner,tooltip_planner:crm.planner_crm
 msgid "Plan your sales strategy: objectives, leads, KPIs, and much more!"
 msgstr ""
+"Suplanuokite savo pardavimų strategiją: tikslai, kontaktai, KPI ir dar "
+"daugiau!"
 
 #. module: crm
 #: model:ir.model,name:crm.model_web_planner
@@ -3512,6 +3541,10 @@ msgid ""
 "- partners: only authenticated partners\n"
 "- followers: only followers of the related document or members of following channels\n"
 msgstr ""
+"Žinutės paskelbimo prie dokumento naudojant pašto serverį politika.\n"
+"- visi: visi gali paskelbti\n"
+"- partneriai: tik patvirtinti partneriai\n"
+"- sekėjai: tik susijusio dokumento sekėjai arba sekančių kanalų nariai\n"
 
 #. module: crm
 #: model:ir.model.fields,field_description:crm.field_crm_activity_preceding_activity_ids
@@ -3593,7 +3626,7 @@ msgstr "Pasiūlymas"
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
 msgid "Qualification form (you can use the survey app for this)"
-msgstr ""
+msgstr "Kvalifikacijos forma (tam galite naudoti apklausos programą)"
 
 #. module: crm
 #. openerp-web
@@ -3603,7 +3636,7 @@ msgstr ""
 #: model:crm.stage,name:crm.stage_lead2
 #, python-format
 msgid "Qualified"
-msgstr ""
+msgstr "Kvalifikuota"
 
 #. module: crm
 #. openerp-web
@@ -3624,14 +3657,14 @@ msgstr "Pasiūlymas išsiųstas"
 #: code:addons/crm/static/src/js/web_planner_crm.js:20
 #, python-format
 msgid "Quotation sent to customer"
-msgstr ""
+msgstr "Komercinis pasiūlymas išsiųstas klientui"
 
 #. module: crm
 #. openerp-web
 #: code:addons/crm/static/src/js/web_planner_crm.js:21
 #, python-format
 msgid "Quotation signed by the customer"
-msgstr ""
+msgstr "Komercinis pasiūlymas pasirašytas kliento"
 
 #. module: crm
 #: model:ir.model.fields,field_description:crm.field_crm_lead_priority
@@ -3655,7 +3688,7 @@ msgstr ""
 #. module: crm
 #: model:ir.model,name:crm.model_crm_lost_reason
 msgid "Reason for loosing leads"
-msgstr ""
+msgstr "Kontaktų praradimo priežastys"
 
 #. module: crm
 #: model:ir.model.fields,field_description:crm.field_crm_activity_log_recommended_activity_id
@@ -3830,6 +3863,10 @@ msgid ""
 "                            Odoo will propose you to merge only those having\n"
 "                            all these fields in common. (not one of the fields)."
 msgstr ""
+"Pasirinkite laukų sąrašą, kuriame ieškosite\n"
+" besidubliuojančių įrašų. Jei pasirinksite kelis laukus,\n"
+"Odoo pasiūlys jums sujungti tik tuos, kurie bendrai turi\n"
+"visus šiuos laukus (ne vieną iš laukų)."
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
@@ -3866,6 +3903,8 @@ msgid ""
 "Send an email to all opportunities in the \"Qualified\" stage for more than "
 "20 days"
 msgstr ""
+"Siųsti laišką visoms galimybėms, esančiomis Kvalifikuotoje stadijoje daugiau"
+" nei 20 dienų."
 
 #. module: crm
 #: model:ir.model.fields,field_description:crm.field_crm_activity_sequence
@@ -3885,6 +3924,8 @@ msgstr "Paslaugos"
 #, python-format
 msgid "Set fields: Expected Revenue, Expected Closing Date, Next Action"
 msgstr ""
+"Nustatykite laukus: planuojamas pelnas, planuojama uždarymo data, sekantis "
+"veiksmas"
 
 #. module: crm
 #: model:ir.actions.server,name:crm.action_set_team_sales_department
@@ -3915,6 +3956,10 @@ msgid ""
 "                      Odoo CRM to transform how your salespeople work.\n"
 "                      That's the purpose of this guide."
 msgstr ""
+"Jūsų pardavimų piltuvėlio nustatymas yra tik pirmas žingsnis.\n"
+"Norint pasiekti žymų pardavimų padidėjimą, mes padėsime jums\n"
+"iš Odoo CRM išgauti viską, kad pakeistumėte savo pardavimų komandos\n"
+"darbą. Toks šio gido tikslas."
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.view_sale_config_settings
@@ -3980,7 +4025,7 @@ msgstr "Programinė įranga"
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
 msgid "Solution Selling"
-msgstr ""
+msgstr "Sprendimų pardavimas"
 
 #. module: crm
 #: model:ir.actions.act_window,help:crm.crm_lost_reason_action
@@ -4113,6 +4158,9 @@ msgid ""
 "                        between good and great salespeople! Setup a pipeline\n"
 "                        that is in line with your sales cycle."
 msgstr ""
+"Sisteminis organizavimas yra tai, kas skiria gerus\n"
+" pardavimų žmones nuo puikių! Nustatykite piltuvėlį, kuris\n"
+"sutampa su jūsų pardavimų ciklu."
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.view_crm_case_leads_filter
@@ -4155,6 +4203,7 @@ msgstr "El. laiškų šablonai"
 #: model:ir.ui.view,arch_db:crm.crm_planner
 msgid "Templates of quotations (use Odoo Online Proposals for this)"
 msgstr ""
+"Komercinių pasiūlymų šablonai (tam naudokite Odoo internetinius pasiūlymus)"
 
 #. module: crm
 #. openerp-web
@@ -4235,7 +4284,7 @@ msgstr ""
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
 msgid "The point of contact <strong>for all your prospects</strong>"
-msgstr ""
+msgstr " <strong>Visų jūsų perspektyvų</strong> kontaktas"
 
 #. module: crm
 #: sql_constraint:crm.lead:0
@@ -4249,6 +4298,9 @@ msgid ""
 "                        <strong>methodical organization</strong>, <strong>trainings</strong> and\n"
 "                        <strong>good sales tools</strong>."
 msgstr ""
+"Trys pagrindinės pardavimų proceso gerinimo praktikos yra:\n"
+"                        <strong>metodiškas organizavimas</strong>, <strong>mokymai</strong> ir\n"
+"                        <strong>geri pardavimų įrankiai</strong>."
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
@@ -4354,7 +4406,7 @@ msgstr "Laikas sandėrio įvykdymui"
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
 msgid "Time to Qualify a Lead"
-msgstr ""
+msgstr "Laikas kontakto kvalifikavimui"
 
 #. module: crm
 #: model:ir.model.fields,field_description:crm.field_crm_lead_title
@@ -4516,6 +4568,10 @@ msgid ""
 "                                            annual support contract, monthly\n"
 "                                            subscription to a service, etc."
 msgstr ""
+"Pasikartojantiems mokėjimams naudokite prenumeratą.\n"
+"Prenumeratos pavyzdžiai:\n"
+"kasmetinis palaikymo kontraktas, mėnesinė\n"
+"paslaugos prenumerata ir pan."
 
 #. module: crm
 #. openerp-web
@@ -4529,7 +4585,7 @@ msgstr "Naudokite <b>pritaikymo gidą</b> CRM konfigūracijai jūsų kompanijai.
 #: code:addons/crm/static/src/js/tour.js:66
 #, python-format
 msgid "Use the breadcrumbs to <b>go back to your sales pipeline</b>."
-msgstr ""
+msgstr "Naudokite adreso kelią <b>sugrįžimui į savo pardavimų piltuvėlį</b>."
 
 #. module: crm
 #: model:ir.model.fields,help:crm.field_crm_team_resource_calendar_id
@@ -4734,7 +4790,7 @@ msgstr "Laimėta pagal šalį"
 #. module: crm
 #: model:ir.model.fields,field_description:crm.field_res_users_target_sales_won
 msgid "Won in Opportunities Target"
-msgstr ""
+msgstr "Laimėta galimybių tiksluose"
 
 #. module: crm
 #: model:ir.model.fields,field_description:crm.field_crm_team_resource_calendar_id
@@ -4749,6 +4805,8 @@ msgid ""
 "You are in discussion with the decision maker and HE agreed on his pain "
 "points"
 msgstr ""
+"Jūs diskutuojate su sprendimų priėmėju ir JIS sutiko su probleminiais "
+"taškais"
 
 #. module: crm
 #: code:addons/crm/wizard/base_partner_merge.py:306
@@ -4764,6 +4822,11 @@ msgid ""
 "                            identify why they were lost and use this information to generate statistics. Here are\n"
 "                            some examples of tags to create: no budget, competition, no pain found, etc."
 msgstr ""
+"Nereikia peržiūrėti prarastų galimybių kiekviename pardavimų susitikime, bet\n"
+"verta tai atlikti bent kartą per mėnesį. Paprašykite savo komandos galimybėse\n"
+"nustatyti žymas, kad matytumėte, kur jos buvo prarastos, ir panaudokite šią\n"
+"informaciją statistikos rinkimui. Pateikiame kelis žymų pavyzdžius: nėra biudžeto,\n"
+"konkurencija, nerastas probleminis taškas ir pan."
 
 #. module: crm
 #: code:addons/crm/wizard/base_partner_merge.py:398
@@ -4976,6 +5039,8 @@ msgid ""
 "to setup your own domain\n"
 "                                 name (e.g. sales@yourcompany.com)"
 msgstr ""
+"jei norite sukurti savo el. paštą\n"
+"                                 (pvz., pardavimai@jusukompanija.com)"
 
 #. module: crm
 #: code:addons/crm/models/crm_lead.py:877
@@ -4991,4 +5056,4 @@ msgstr "naudoti Odoo API importuavimui per skriptus"
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
 msgid "with your work above"
-msgstr ""
+msgstr "su jūsų darbu, esančiu aukščiau"
