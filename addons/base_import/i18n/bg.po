@@ -520,7 +520,7 @@ msgstr "Разделител за хиляди:"
 #: code:addons/base_import/static/src/xml/base_import.xml:62
 #, python-format
 msgid "Track history during import"
-msgstr ""
+msgstr "Проследете историята в хода на вноса"
 
 #. module: base_import
 #: code:addons/base_import/models/base_import.py:199
