@@ -821,8 +821,8 @@ class Orderpoint(models.Model):
     @api.onchange('product_id')
     def onchange_product_id(self):
         if self.product_id:
-            self.product_uom = self.product_id.uom_id.id
-            return {'domain':  {'product_uom': [('category_id', '=', self.product_id.uom_id.category_id.id)]}}
+            self.product_uom = self.product_id.product_tmpl_id.uom_id.id
+            return {'domain':  {'product_uom': [('category_id', '=', self.product_id.product_tmpl_id.uom_id.category_id.id)]}}
         return {'domain': {'product_uom': []}}
 
     @api.multi

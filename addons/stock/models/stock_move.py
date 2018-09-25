@@ -157,7 +157,7 @@ class StockMove(models.Model):
     def _compute_product_qty(self):
         if self.product_uom:
             rounding_method = self._context.get('rounding_method', 'UP')
-            self.product_qty = self.product_uom._compute_quantity(self.product_uom_qty, self.product_id.uom_id, rounding_method=rounding_method)
+            self.product_qty = self.product_uom._compute_quantity(self.product_uom_qty, self.product_id.product_tmpl_id.uom_id, rounding_method=rounding_method)
 
     def _set_product_qty(self):
         """ The meaning of product_qty field changed lately and is now a functional field computing the quantity
@@ -169,7 +169,7 @@ class StockMove(models.Model):
     @api.one
     @api.depends('linked_move_operation_ids.qty')
     def _get_remaining_qty(self):
-        self.remaining_qty = float_round(self.product_qty - sum(self.mapped('linked_move_operation_ids').mapped('qty')), precision_rounding=self.product_id.uom_id.rounding)
+        self.remaining_qty = float_round(self.product_qty - sum(self.mapped('linked_move_operation_ids').mapped('qty')), precision_rounding=self.product_id.product_tmpl_id.uom_id.rounding)
 
     @api.one
     @api.depends('state', 'quant_ids.lot_id', 'reserved_quant_ids.lot_id')
@@ -205,7 +205,7 @@ class StockMove(models.Model):
             move.string_availability_info = ''  # 'not applicable' or 'n/a' could work too
         for move in other_moves:
             total_available = min(move.product_qty, move.reserved_availability + move.availability)
-            total_available = move.product_id.uom_id._compute_quantity(total_available, move.product_uom, round=False)
+            total_available = move.product_id.product_tmpl_id.uom_id._compute_quantity(total_available, move.product_uom, round=False)
             total_available = float_round(total_available, precision_digits=precision)
             info = str(total_available)
             if self.user_has_groups('product.group_uom'):
@@ -213,7 +213,7 @@ class StockMove(models.Model):
             if move.reserved_availability:
                 if move.reserved_availability != total_available:
                     # some of the available quantity is assigned and some are available but not reserved
-                    reserved_available = move.product_id.uom_id._compute_quantity(move.reserved_availability, move.product_uom, round=False)
+                    reserved_available = move.product_id.product_tmpl_id.uom_id._compute_quantity(move.reserved_availability, move.product_uom, round=False)
                     reserved_available = float_round(reserved_available, precision_digits=precision)
                     info += _(' (%s reserved)') % str(reserved_available)
                 else:
@@ -223,7 +223,7 @@ class StockMove(models.Model):
 
     @api.constrains('product_uom')
     def _check_uom(self):
-        moves_error = self.filtered(lambda move: move.product_id.uom_id.category_id != move.product_uom.category_id)
+        moves_error = self.filtered(lambda move: move.product_id.product_tmpl_id.uom_id.category_id != move.product_uom.category_id)
         if moves_error:
             user_warning = _('You try to move a product using a UoM that is not compatible with the UoM of the product moved. Please use an UoM in the same UoM category.')
             for move in moves_error:
@@ -634,9 +634,9 @@ class StockMove(models.Model):
                             Quant.quants_reserve(quants, move, record)
             else:
                 lot_qty = {}
-                rounding = ops.product_id.uom_id.rounding
+                rounding = ops.product_id.product_tmpl_id.uom_id.rounding
                 for pack_lot in ops.pack_lot_ids:
-                    lot_qty[pack_lot.lot_id.id] = ops.product_uom_id._compute_quantity(pack_lot.qty, ops.product_id.uom_id)
+                    lot_qty[pack_lot.lot_id.id] = ops.product_uom_id._compute_quantity(pack_lot.qty, ops.product_id.product_tmpl_id.uom_id)
                 for record in ops.linked_move_operation_ids:
                     move_qty = record.qty
                     move = record.move_id
@@ -735,7 +735,7 @@ class StockMove(models.Model):
     @api.multi
     def _move_quants_by_lot_v10(self, quants_taken, false_quants, pack_operation, lot_quantities, lot_move_quantities, dest_package_id):
         Quant = self.env['stock.quant']
-        rounding = pack_operation.product_id.uom_id.rounding
+        rounding = pack_operation.product_id.product_tmpl_id.uom_id.rounding
         preferred_domain_list = [[('reservation_id', '=', False)], ['&', ('reservation_id', 'not in', self.ids), ('reservation_id', '!=', False)]]
 
         for move_rec_updateme in self:
@@ -822,13 +822,13 @@ class StockMove(models.Model):
             entire_pack = not operation.product_id and True or False
 
             # compute quantities for each lot + check quantities match
-            lot_quantities = dict((pack_lot.lot_id.id, operation.product_uom_id._compute_quantity(pack_lot.qty, operation.product_id.uom_id)
+            lot_quantities = dict((pack_lot.lot_id.id, operation.product_uom_id._compute_quantity(pack_lot.qty, operation.product_id.product_tmpl_id.uom_id)
             ) for pack_lot in operation.pack_lot_ids)
-
+            #KGB kvaliteta u lot_quantities?
             qty = operation.product_qty
-            if operation.product_uom_id and operation.product_uom_id != operation.product_id.uom_id:
-                qty = operation.product_uom_id._compute_quantity(qty, operation.product_id.uom_id)
-            if operation.pack_lot_ids and float_compare(sum(lot_quantities.values()), qty, precision_rounding=operation.product_id.uom_id.rounding) != 0.0:
+            if operation.product_uom_id and operation.product_uom_id != operation.product_id.product_tmpl_id.uom_id:
+                qty = operation.product_uom_id._compute_quantity(qty, operation.product_id.product_tmpl_id.uom_id)
+            if operation.pack_lot_ids and float_compare(sum(lot_quantities.values()), qty, precision_rounding=operation.product_id.product_tmpl_id.uom_id.rounding) != 0.0:
                 raise UserError(_('You have a difference between the quantity on the operation and the quantities specified for the lots. '))
 
             quants_taken = []
@@ -859,7 +859,7 @@ class StockMove(models.Model):
                 else:
                     # Check what you can do with reserved quants already
                     qty_on_link = prout_move_qty[move]
-                    rounding = operation.product_id.uom_id.rounding
+                    rounding = operation.product_id.product_tmpl_id.uom_id.rounding
                     for reserved_quant in move.reserved_quant_ids:
                         if (reserved_quant.owner_id.id != operation.owner_id.id) or (reserved_quant.location_id.id != operation.location_id.id) or \
                                 (reserved_quant.package_id.id != operation.package_id.id):
@@ -891,7 +891,7 @@ class StockMove(models.Model):
         # Check for remaining qtys and unreserve/check move_dest_id in
         move_dest_ids = set()
         for move in self:
-            if float_compare(remaining_move_qty[move.id], 0, precision_rounding=move.product_id.uom_id.rounding) > 0:  # In case no pack operations in picking
+            if float_compare(remaining_move_qty[move.id], 0, precision_rounding=move.product_id.product_tmpl_id.uom_id.rounding) > 0:  # In case no pack operations in picking
                 move.check_tracking(False)  # TDE: do in batch ? redone ? check this
 
                 preferred_domain_list = [[('reservation_id', '=', move.id)], [('reservation_id', '=', False)], ['&', ('reservation_id', '!=', move.id), ('reservation_id', '!=', False)]]
@@ -958,10 +958,10 @@ class StockMove(models.Model):
             # we restrict the split of a draft move because if not confirmed yet, it may be replaced by several other moves in
             # case of phantom bom (with mrp module). And we don't want to deal with this complexity by copying the product that will explode.
             raise UserError(_('You cannot split a draft move. It needs to be confirmed first.'))
-        if float_is_zero(qty, precision_rounding=self.product_id.uom_id.rounding) or self.product_qty <= qty:
+        if float_is_zero(qty, precision_rounding=self.product_id.product_tmpl_id.uom_id.rounding) or self.product_qty <= qty:
             return self.id
         # HALF-UP rounding as only rounding errors will be because of propagation of error from default UoM
-        uom_qty = self.product_id.uom_id._compute_quantity(qty, self.product_uom, rounding_method='HALF-UP')
+        uom_qty = self.product_id.product_tmpl_id.uom_id._compute_quantity(qty, self.product_uom, rounding_method='HALF-UP')
         defaults = {
             'product_uom_qty': uom_qty,
             'procure_method': 'make_to_stock',

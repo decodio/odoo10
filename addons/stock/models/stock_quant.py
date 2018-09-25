@@ -78,7 +78,7 @@ class Quant(models.Model):
     @api.one
     def _compute_name(self):
         """ Forms complete name of location from parent location to child location. """
-        self.name = '%s: %s%s' % (self.lot_id.name or self.product_id.code or '', self.qty, self.product_id.uom_id.name)
+        self.name = '%s: %s%s' % (self.lot_id.name or self.product_id.code or '', self.qty, self.product_id.product_tmpl_id.uom_id.name)
 
     @api.multi
     def _compute_inventory_value(self):
@@ -155,7 +155,7 @@ class Quant(models.Model):
             quants_to_reserve_sudo.write({'reservation_id': move.id})
         # check if move state needs to be set as 'assigned'
         # TDE CLEANME: should be moved as a move model method IMO
-        rounding = move.product_id.uom_id.rounding
+        rounding = move.product_id.product_tmpl_id.uom_id.rounding
         if float_compare(reserved_availability, move.product_qty, precision_rounding=rounding) == 0 and move.state in ('confirmed', 'waiting'):
             move.write({'state': 'assigned'})
         elif float_compare(reserved_availability, 0, precision_rounding=rounding) > 0 and not move.partially_available:
@@ -233,7 +233,7 @@ class Quant(models.Model):
         quant in the source location if it's an internal location. '''
         price_unit = move.get_price_unit()
         location = force_location_to or move.location_dest_id
-        rounding = move.product_id.uom_id.rounding
+        rounding = move.product_id.product_tmpl_id.uom_id.rounding
         vals = {
             'product_id': move.product_id.id,
             'location_id': location.id,
@@ -304,7 +304,7 @@ class Quant(models.Model):
         """
         solving_quant = self
         quants = self._search_quants_to_reconcile()
-        product_uom_rounding = self.product_id.uom_id.rounding
+        product_uom_rounding = self.product_id.product_tmpl_id.uom_id.rounding
         for quant_neg, qty in quants:
             if not quant_neg or not solving_quant:
                 continue
@@ -366,7 +366,7 @@ class Quant(models.Model):
         else:
             order = 'in_date'
 
-        rounding = self.product_id.uom_id.rounding
+        rounding = self.product_id.product_tmpl_id.uom_id.rounding
         quants = []
         quantity = self.qty
         for quant in self.search(dom, order=order):
@@ -436,7 +436,7 @@ class Quant(models.Model):
             meta_domains = preferred_domain_list
 
         res_qty = qty
-        while (float_compare(res_qty, 0, precision_rounding=move.product_id.uom_id.rounding) and meta_domains):
+        while (float_compare(res_qty, 0, precision_rounding=move.product_id.product_tmpl_id.uom_id.rounding) and meta_domains):
             additional_domain = meta_domains.pop(0)
             reservations.pop()
             new_reservations = self._quants_get_reservation(
@@ -500,7 +500,7 @@ class Quant(models.Model):
             order = orderby
         else:
             order = 'in_date'
-        rounding = move.product_id.uom_id.rounding
+        rounding = move.product_id.product_tmpl_id.uom_id.rounding
         domain = domain if domain is not None else [('qty', '>', 0.0)]
         res = []
         offset = 0
@@ -562,7 +562,7 @@ class Quant(models.Model):
     @api.multi
     def _quant_split(self, qty):
         self.ensure_one()
-        rounding = self.product_id.uom_id.rounding
+        rounding = self.product_id.product_tmpl_id.uom_id.rounding
         if float_compare(abs(self.qty), abs(qty), precision_rounding=rounding) <= 0: # if quant <= qty in abs, take it entirely
             return False
         qty_round = float_round(qty, precision_rounding=rounding)

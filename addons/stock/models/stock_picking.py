@@ -605,10 +605,10 @@ class Picking(models.Model):
                 picking_quants += move_quants
                 forced_qty = 0.0
                 if move.state == 'assigned':
-                    qty = move.product_uom._compute_quantity(move.product_uom_qty, move.product_id.uom_id, round=False)
+                    qty = move.product_uom._compute_quantity(move.product_uom_qty, move.product_id.product_tmpl_id.uom_id, round=False)
                     forced_qty = qty - sum([x.qty for x in move_quants])
                 # if we used force_assign() on the move, or if the move is incoming, forced_qty > 0
-                if float_compare(forced_qty, 0, precision_rounding=move.product_id.uom_id.rounding) > 0:
+                if float_compare(forced_qty, 0, precision_rounding=move.product_id.product_tmpl_id.uom_id.rounding) > 0:
                     if forced_qties.get(move.product_id):
                         forced_qties[move.product_id] += forced_qty
                     else:
@@ -666,7 +666,7 @@ class Picking(models.Model):
             qty_to_assign = qty
             Product = self.env["product.product"]
             product = Product.browse(product_id)
-            rounding = product.uom_id.rounding
+            rounding = product.product_tmpl_id.uom_id.rounding
             qtyassign_cmp = float_compare(qty_to_assign, 0.0, precision_rounding=rounding)
             if prod2move_ids.get(product_id):
                 while prod2move_ids[product_id] and qtyassign_cmp > 0:
@@ -703,7 +703,7 @@ class Picking(models.Model):
         for ops in operations:
             lot_qty = {}
             for packlot in ops.pack_lot_ids:
-                lot_qty[packlot.lot_id.id] = ops.product_uom_id._compute_quantity(packlot.qty, ops.product_id.uom_id)
+                lot_qty[packlot.lot_id.id] = ops.product_uom_id._compute_quantity(packlot.qty, ops.product_id.product_tmpl_id.uom_id)
             # for each operation, create the links with the stock move by seeking on the matching reserved quants,
             # and deffer the operation if there is some ambiguity on the move to select
             if ops.package_id and not ops.product_id and (not done_qtys or ops.qty_done):
@@ -721,8 +721,8 @@ class Picking(models.Model):
             elif ops.product_id.id:
                 # Check moves with same product
                 product_qty = ops.qty_done if done_qtys else ops.product_qty
-                qty_to_assign = ops.product_uom_id._compute_quantity(product_qty, ops.product_id.uom_id)
-                precision_rounding = ops.product_id.uom_id.rounding
+                qty_to_assign = ops.product_uom_id._compute_quantity(product_qty, ops.product_id.product_tmpl_id.uom_id)
+                precision_rounding = ops.product_id.product_tmpl_id.uom_id.rounding
                 for move_dict in prod2move_ids.get(ops.product_id.id, []):
                     move = move_dict['move']
                     for quant in move.reserved_quant_ids:
@@ -853,7 +853,7 @@ class Picking(models.Model):
     def check_backorder(self):
         need_rereserve, all_op_processed = self.picking_recompute_remaining_quantities(done_qtys=True)
         for move in self.move_lines:
-            if float_compare(move.remaining_qty, 0, precision_rounding=move.product_id.uom_id.rounding) != 0:
+            if float_compare(move.remaining_qty, 0, precision_rounding=move.product_id.product_tmpl_id.uom_id.rounding) != 0:
                 return True
         return False
 
@@ -885,7 +885,7 @@ class Picking(models.Model):
 
             # split move lines if needed
             for move in picking.move_lines:
-                rounding = move.product_id.uom_id.rounding
+                rounding = move.product_id.product_tmpl_id.uom_id.rounding
                 remaining_qty = move.remaining_qty
                 if move.state in ('done', 'cancel'):
                     # ignore stock moves cancelled or already done
@@ -931,7 +931,7 @@ class Picking(models.Model):
         moves = self.env['stock.move']
         for pack_operation in self.pack_operation_ids:
             for product, remaining_qty in pack_operation._get_remaining_prod_quantities().items():
-                if float_compare(remaining_qty, 0, precision_rounding=product.uom_id.rounding) > 0:
+                if float_compare(remaining_qty, 0, precision_rounding=product.product_tmpl_id.uom_id.rounding) > 0:
                     vals = self._prepare_values_extra_move(pack_operation, product, remaining_qty)
                     moves |= moves.create(vals)
         if moves:
