@@ -233,8 +233,9 @@ class ProductTemplate(models.Model):
     @api.one
     @api.depends('product_variant_ids.product_tmpl_id')
     def _compute_product_variant_count(self):
-        self.product_variant_count = len(self.product_variant_ids)
-
+        # do not pollute variants to be prefetched when counting variants
+        self.product_variant_count = len(self.with_prefetch().product_variant_ids)
+        
     @api.depends('product_variant_ids', 'product_variant_ids.default_code')
     def _compute_default_code(self):
         unique_variants = self.filtered(lambda template: len(template.product_variant_ids) == 1)
@@ -306,6 +307,8 @@ class ProductTemplate(models.Model):
 
     @api.multi
     def name_get(self):
+        # Prefetch the fields used by the `name_get`, so `browse` doesn't fetch other fields
+        self.read(['name', 'default_code'])
         return [(template.id, '%s%s' % (template.default_code and '[%s] ' % template.default_code or '', template.name))
                 for template in self]
 
