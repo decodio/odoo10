@@ -309,6 +309,7 @@ CREATE TABLE res_company (
     name varchar NOT NULL,
     partner_id bigint,
     currency_id bigint,
+    sequence bigint,
     primary key(id)
 );
 
