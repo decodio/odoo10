@@ -2613,7 +2613,7 @@ class BaseModel(object):
             self._cr.execute(
                 """SELECT COUNT(*) 
                         FROM information_schema.sequences 
-                        WHERE sequence_schema='public' AND sequence_name=%s""" % sequence_name)
+                        WHERE sequence_schema='public' AND sequence_name='%s'""" % sequence_name)
             seq_number = self._cr.fetchone()[0]
             if seq_number < 1:
                 sql = "CREATE SEQUENCE %s " % sequence_name
