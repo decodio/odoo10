@@ -893,6 +893,7 @@ class BaseModel(object):
                 # avoid broken transaction) and keep going
                 cr.execute('ROLLBACK TO SAVEPOINT model_load_save')
             except Exception as e:
+                _logger.exception("Error while loading record")
                 message = (_('Unknown error during import:') + ' %s: %s' % (type(e), unicode(e.message or e.name)))
                 moreinfo = _('Resolve other errors first')
                 messages.append(dict(info, type='error', message=message, moreinfo=moreinfo))
@@ -2603,18 +2604,28 @@ class BaseModel(object):
     @api.model_cr
     def _create_table(self):
         if self.is_transient():
-            self._cr.execute('CREATE TABLE "%s" (id BIGSERIAL NOT NULL, PRIMARY KEY(id))' % (self._table,))
+            self._cr.execute(
+                'CREATE TABLE "%s" (id BIGSERIAL NOT NULL, PRIMARY KEY(id))' % (
+                self._table,))
         else:
             # Create a PostreSQL sequence
             sequence_name = self._sequence or 'ir_serial_id_seq'
-            sql = "CREATE SEQUENCE IF NOT EXISTS %s " % sequence_name
-            self._cr.execute(sql)
+            # CHECK FOR SEQUENCE (pre 9.3.25 version - IF NOT EXISTS doesnt work)
+            self._cr.execute(
+                """SELECT COUNT(*) 
+                        FROM information_schema.sequences 
+                        WHERE sequence_schema='public' AND sequence_name='%s'""" % sequence_name)
+            seq_number = self._cr.fetchone()[0]
+            if seq_number < 1:
+                sql = "CREATE SEQUENCE %s " % sequence_name
+                self._cr.execute(sql)
             self._cr.execute("""
-                CREATE TABLE "%s"
-                       (id bigint NOT NULL DEFAULT nextval('%s'),
-                        PRIMARY KEY(id))  WITHOUT OIDS
-                """ % (self._table, sequence_name))
-        self._cr.execute("COMMENT ON TABLE \"%s\" IS %%s" % self._table, (self._description,))
+                    CREATE TABLE "%s"
+                           (id bigint NOT NULL DEFAULT nextval('%s'),
+                            PRIMARY KEY(id))  WITHOUT OIDS
+                    """ % (self._table, sequence_name))
+        self._cr.execute("COMMENT ON TABLE \"%s\" IS %%s" % self._table,
+                         (self._description,))
         _schema.debug("Table '%s': created", self._table)
 
     @api.model_cr

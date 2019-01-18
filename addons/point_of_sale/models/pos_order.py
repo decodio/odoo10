@@ -407,6 +407,12 @@ class PosOrder(models.Model):
                 # for debugging and support purposes
                 _logger.exception('Reconciliation did not work for order %s', order.name)
 
+    def _filtered_for_reconciliation(self):
+        filter_states = ['invoiced', 'done']
+        if self.env['ir.config_parameter'].sudo().get_param('point_of_sale.order_reconcile_mode', 'all') == 'partner_only':
+            return self.filtered(lambda order: order.state in filter_states and order.partner_id)
+        return self.filtered(lambda order: order.state in filter_states)
+
     def _default_session(self):
         return self.env['pos.session'].search([('state', '=', 'opened'), ('user_id', '=', self.env.uid)], limit=1)
 
@@ -746,14 +752,18 @@ class PosOrder(models.Model):
                 qty_done = 0
                 pack_lots = []
                 pos_pack_lots = PosPackOperationLot.search([('order_id', '=', order.id), ('product_id', '=', pack_operation.product_id.id)])
-                pack_lot_names = [pos_pack.lot_name for pos_pack in pos_pack_lots]
-
+                pack_lot_names = {}
+                for pos_pack in pos_pack_lots:
+                    if pos_pack.lot_name in pack_lot_names:
+                        pack_lot_names[pos_pack.lot_name] += pos_pack.pos_order_line_id.qty
+                    else:
+                        pack_lot_names[pos_pack.lot_name] = pos_pack.pos_order_line_id.qty
                 if pack_lot_names:
-                    for lot_name in list(set(pack_lot_names)):
+                    for lot_name in pack_lot_names:
                         stock_production_lot = StockProductionLot.search([('name', '=', lot_name), ('product_id', '=', pack_operation.product_id.id)])
                         if stock_production_lot:
                             if stock_production_lot.product_id.tracking == 'lot':
-                                qty = pack_lot_names.count(lot_name)
+                                qty = pack_lot_names[lot_name]
                             else:
                                 qty = 1.0
                             qty_done += qty

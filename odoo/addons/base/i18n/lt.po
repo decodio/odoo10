@@ -3,28 +3,30 @@
 # * base
 # 
 # Translators:
-# Martin Trigaux, 2016
-# UAB "Draugiški sprendimai" <transifex@draugiskisprendimai.lt>, 2016
-# Anatolij, 2016
-# Audrius Palenskis <audrius.palenskis@gmail.com>, 2016
-# Šarūnas Ažna <sarunas.azna@gmail.com>, 2016
-# Arminas Grigonis <arminas@versada.lt>, 2016
-# digitouch UAB <digitouchagencyeur@gmail.com>, 2016
 # Zygi Mantus <zygimantus@gmail.com>, 2016
+# Arminas Grigonis <arminas@versada.lt>, 2016
+# Šarūnas Ažna <sarunas.azna@gmail.com>, 2016
+# Anatolij, 2016
 # Rolandas <info@paninfo.lt>, 2016
-# Naglis Jonaitis, 2016
+# Audrius Palenskis <audrius.palenskis@gmail.com>, 2016
+# UAB "Draugiški sprendimai" <transifex@draugiskisprendimai.lt>, 2016
 # Monika Raciunaite <monika.raciunaite@gmail.com>, 2016
 # Antanas Muliuolis <an.muliuolis@gmail.com>, 2017
-# Silvija Butko <silvija.butko@gmail.com>, 2018
+# Martin Trigaux, 2017
+# digitouch UAB <digitouchagencyeur@gmail.com>, 2017
 # Eimantas <eimantas@focusate.eu>, 2018
-# Linas Versada <paulius.sladkevicius@gmail.com>, 2018
+# Silvija Butko <silvija.butko@gmail.com>, 2018
+# Naglis Jonaitis, 2018
+# Vytautas Stanaitis <vytautas@basas.lt>, 2018
+# Linas Versada <linaskrisiukenas@gmail.com>, 2018
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-10-20 07:12+0000\n"
-"PO-Revision-Date: 2017-10-20 07:12+0000\n"
-"Last-Translator: Linas Versada <paulius.sladkevicius@gmail.com>, 2018\n"
+"PO-Revision-Date: 2016-09-07 09:14+0000\n"
+"Last-Translator: Linas Versada <linaskrisiukenas@gmail.com>, 2018\n"
 "Language-Team: Lithuanian (https://www.transifex.com/odoo/teams/41243/lt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -191,6 +193,73 @@ msgid ""
 "11010101 Caja General\n"
 "    "
 msgstr ""
+"\n"
+"\n"
+"Localization Module for Dominican Republic\n"
+"===========================================\n"
+"\n"
+"Catálogo de Cuentas e Impuestos para República Dominicana, Compatible para\n"
+"**Internacionalización** con **NIIF** y alineado a las normas y regulaciones\n"
+"de la Dirección General de Impuestos Internos (**DGII**).\n"
+"\n"
+"**Este módulo consiste de:**\n"
+"\n"
+"- Catálogo de Cuentas Estándar (alineado a DGII y NIIF)\n"
+"- Catálogo de Impuestos con la mayoría de Impuestos Preconfigurados\n"
+"        - ITBIS para compras y ventas\n"
+"        - Retenciones de ITBIS\n"
+"        - Retenciones de ISR\n"
+"        - Grupos de Impuestos y Retenciones:\n"
+"                - Telecomunicaiones\n"
+"                - Proveedores de Materiales de Construcción\n"
+"                - Personas Físicas Proveedoras de Servicios\n"
+"        - Otros impuestos\n"
+"- Secuencias Preconfiguradas para manejo de todos los NCF\n"
+"        - Facturas con Valor Fiscal (para Ventas)\n"
+"        - Facturas para Consumidores Finales\n"
+"        - Notas de Débito y Crédito\n"
+"        - Registro de Proveedores Informales\n"
+"        - Registro de Ingreso Único\n"
+"        - Registro de Gastos Menores\n"
+"        - Gubernamentales\n"
+"- Posiciones Fiscales para automatización de impuestos y retenciones\n"
+"        - Cambios de Impuestos a Exenciones (Ej. Ventas al Estado)\n"
+"        - Cambios de Impuestos a Retenciones (Ej. Compra Servicios al Exterior)\n"
+"        - Entre otros\n"
+"\n"
+"**Nota:**\n"
+"Esta localización, aunque posee las secuencias para NCF, las mismas no pueden\n"
+"ser utilizadas sin la instalación de módulos de terceros o desarrollo\n"
+"adicional.\n"
+"\n"
+"Estructura de Codificación del Catálogo de Cuentas:\n"
+"===================================================\n"
+"\n"
+"**Un dígito** representa la categoría/tipo de cuenta del del estado financiero.\n"
+"**1** - Activo        **4** - Cuentas de Ingresos y Ganancias\n"
+"**2** - Pasivo        **5** - Costos, Gastos y Pérdidas\n"
+"**3** - Capital       **6** - Cuentas Liquidadoras de Resultados\n"
+"\n"
+"**Dos dígitos** representan los rubros de agrupación:\n"
+"11- Activo Corriente\n"
+"21- Pasivo Corriente\n"
+"31- Capital Contable\n"
+"\n"
+"**Cuatro dígitos** se asignan a las cuentas de mayor: cuentas de primer orden\n"
+"1101- Efectivo y Equivalentes de Efectivo\n"
+"2101- Cuentas y Documentos por pagar\n"
+"3101- Capital Social\n"
+"\n"
+"**Seis dígitos** se asignan a las sub-cuentas: cuentas de segundo orden\n"
+"110101 - Caja\n"
+"210101 - Proveedores locales\n"
+"\n"
+"**Ocho dígitos** son para las cuentas de tercer orden (las visualizadas\n"
+"en Odoo):\n"
+"1101- Efectivo y Equivalentes\n"
+"110101- Caja\n"
+"11010101 Caja General\n"
+"    "
 
 #. module: base
 #: model:ir.module.module,description:base.module_l10n_jp
@@ -6180,7 +6249,7 @@ msgstr "Aplikacijos:"
 #. module: base
 #: model:ir.model.fields,field_description:base.field_ir_ui_view_arch_db
 msgid "Arch Blob"
-msgstr ""
+msgstr "Arch Blob"
 
 #. module: base
 #: model:ir.model.fields,field_description:base.field_ir_ui_view_arch_fs
@@ -7147,6 +7216,9 @@ msgid ""
 "Child server actions that will be executed. Note that the last return "
 "returned action value will be used as global return value."
 msgstr ""
+"Dukteriniai serverio veiksmai, kurie bus atlikti. Atkreipkite dėmesį, kad "
+"paskutinio grąžinimo grąžinta reikšmė bus naudojama kai bendroji grąžinimo "
+"reikšmė."
 
 #. module: base
 #: model:res.country,name:base.cl
@@ -9598,7 +9670,7 @@ msgstr "Filtrai, matomi tik vienam vartotojui"
 msgid ""
 "Final placeholder expression, to be copy-pasted in the desired template "
 "field."
-msgstr ""
+msgstr "Galutinė vietos ženklo išraiška, kopijuojama į norimą šablono lauką."
 
 #. module: base
 #: model:ir.module.module,summary:base.module_account_accountant
@@ -10711,6 +10783,8 @@ msgid ""
 "serialization field, instead of having its own database column. This cannot "
 "be changed after creation."
 msgstr ""
+"Jei nustatyta, šis laukas bus laikomas retoje serijavimo lauko struktūroje, "
+"vietoje to, kad turėtų savo duomenų bazės stulpelį. "
 
 #. module: base
 #: model:ir.ui.view,arch_db:base.view_server_action_form
@@ -10753,6 +10827,9 @@ msgid ""
 "* if False, the view currently does not extend its parent but can be enabled\n"
 "         "
 msgstr ""
+"Jei šis vaizdas yra paveldėtas,\n"
+"* Jei teigiamas, vaizdas visada praplečia savo tėvinį vaizdą\n"
+"* Jei neigiamas, vaizdas nepraplečia savo tėvinio, bet tai gali būti įjungta"
 
 #. module: base
 #: model:ir.actions.act_window,help:base.action_country_state
@@ -12339,7 +12416,7 @@ msgstr "Masinių laiškų temos"
 #: model:ir.module.module,shortdesc:base.module_mrp_mps
 #: model:ir.module.module,summary:base.module_mrp_mps
 msgid "Master Production Schedule"
-msgstr ""
+msgstr "Pagrindinis gamybos planas"
 
 #. module: base
 #: model:res.country,name:base.mr
@@ -12465,7 +12542,7 @@ msgstr "Mikronezija"
 #. module: base
 #: model:ir.model.fields,field_description:base.field_ir_attachment_mimetype
 msgid "Mime Type"
-msgstr ""
+msgstr "MIME tipas"
 
 #. module: base
 #: model:ir.ui.view,arch_db:base.sequence_view
@@ -13259,7 +13336,7 @@ msgstr "Biuro reikmenys"
 #: model:ir.module.module,description:base.module_payment_ogone
 #: model:ir.module.module,shortdesc:base.module_payment_ogone
 msgid "Ogone Payment Acquirer"
-msgstr ""
+msgstr "Ogone mokėjimo surinkėjas"
 
 #. module: base
 #: model:res.country,name:base.om
@@ -13360,6 +13437,15 @@ msgid ""
 "(<xpath/>) are applied, and the result is used as if it were this view's\n"
 "actual arch.\n"
 msgstr ""
+"Galioja tik jei šis rodinys paveldimas iš kito (inherit_id nėra False/Null).\n"
+"\n"
+"* Jei plėtinys (standartiškai), jei šis rodinys yra užklausiamas, tikrinamas artimiausias\n"
+"pirminis vaizdas (per inherit_id), tada taikomi visi rodiniai, paveldimi iš jo su šio \n"
+"rodinio modeliu\n"
+"* Jei pirminis, artimiausias pirminis rodinys yra pilna išsprendžiamas (net jei jis naudoja\n"
+"kitokį modelį nei šis), tada šio rodinio paveldėjimo taisyklės\n"
+"(<xpath/>) yra pritaikomos ir rezultatas yra panaudojamas kaip jis būtų šio rodinio\n"
+"tikroji arka.\n"
 
 #. module: base
 #: code:addons/base/ir/ir_model.py:885
@@ -13413,6 +13499,8 @@ msgid ""
 "Optional help text for the users with a description of the target view, such"
 " as its usage and purpose."
 msgstr ""
+"Papildomas pagalbinis tekstas vartotojams, turintis tikslinio rodinio aprašą"
+" su jo panaudojimu ir tikslu."
 
 #. module: base
 #: model:ir.model.fields,help:base.field_ir_act_window_src_model
@@ -13747,7 +13835,7 @@ msgstr "Pirkėjas: Buckaroo įgyvendinimas"
 #. module: base
 #: model:ir.module.module,summary:base.module_payment_ogone
 msgid "Payment Acquirer: Ogone Implementation"
-msgstr ""
+msgstr "Mokėjimo surinkėjas: Ogone diegimas"
 
 #. module: base
 #: model:ir.module.module,summary:base.module_payment_paypal
@@ -13856,7 +13944,7 @@ msgstr "Pitkerno salos"
 #: selection:ir.actions.act_window.view,view_mode:0
 #: selection:ir.ui.view,type:0
 msgid "Pivot"
-msgstr ""
+msgstr "Suvestinis"
 
 #. module: base
 #: model:ir.model.fields,field_description:base.field_ir_act_server_copyvalue
@@ -14143,7 +14231,7 @@ msgstr "Produkto laiško šablonas"
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_mrp_plm
 msgid "Product Lifecycle Management (PLM)"
-msgstr ""
+msgstr "Produkto gyvavimo valdymas (PLM)"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_product_extended
@@ -15058,7 +15146,7 @@ msgstr "Pardavimų darbo laiko apskaitos žiniaraštis"
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_timesheet_grid_sale
 msgid "Sales Timesheet: Grid Support"
-msgstr ""
+msgstr "Partavimo Laiko Apskaita: Grotelių palaikymas"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_sale_mrp
@@ -15115,7 +15203,7 @@ msgstr "Išsaugoti kaip priedo priešdėlį"
 #. module: base
 #: model:ir.module.module,summary:base.module_mrp_maintenance
 msgid "Schedule and manage maintenance on machine and tools."
-msgstr ""
+msgstr "Planuoti ir valdyti mašinų ir įrankių priežiūrą."
 
 #. module: base
 #: model:ir.module.module,summary:base.module_website_event
@@ -15207,6 +15295,8 @@ msgid ""
 "Select target field from the related document model.\n"
 "If it is a relationship field you will be able to select a target field at the destination of the relationship."
 msgstr ""
+"Pasirinkite tikslinį lauką iš susijusio dokumento modelio.\n"
+"Jei tai yra santykio laukas, galėsite pasirinkti tikslinį lauką santykio tiksle."
 
 #. module: base
 #: model:ir.model.fields,help:base.field_ir_act_server_action_id
@@ -15249,7 +15339,7 @@ msgstr "Pasirinkimo nustatymai"
 #: model:ir.model.fields,field_description:base.field_res_partner_self
 #: model:ir.model.fields,field_description:base.field_res_users_self
 msgid "Self"
-msgstr ""
+msgstr "Savas"
 
 #. module: base
 #: model:ir.module.module,summary:base.module_website_event_sale
@@ -15368,7 +15458,7 @@ msgstr "Serializacijos laukas"
 #: code:addons/models.py:339
 #, python-format
 msgid "Serialization field `%s` not found for sparse field `%s`!"
-msgstr ""
+msgstr "Serijavimo laukas \"%s\" nerastas retame lauke \"%s\"!"
 
 #. module: base
 #: selection:ir.logging,type:0
@@ -15893,12 +15983,12 @@ msgstr "Gatvė 2"
 #: model:ir.module.module,description:base.module_payment_stripe
 #: model:ir.module.module,shortdesc:base.module_payment_stripe
 msgid "Stripe Payment Acquirer"
-msgstr ""
+msgstr "Stripe mokėjimo surinkėjas"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_web_studio
 msgid "Studio"
-msgstr ""
+msgstr "Studio"
 
 #. module: base
 #: model:ir.model.fields,field_description:base.field_ir_act_server_sub_model_object_field
@@ -16826,7 +16916,7 @@ msgstr "Tūkstančių skyriklis"
 #. module: base
 #: model:ir.module.module,summary:base.module_helpdesk
 msgid "Ticketing, Support, Issues"
-msgstr ""
+msgstr "Įvykiai Pagalba, Problemos"
 
 #. module: base
 #: model:ir.module.module,summary:base.module_website_helpdesk_livechat
@@ -17239,7 +17329,7 @@ msgstr "Jungtinės Karalystės apskaitos ataskaitos"
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_delivery_ups
 msgid "UPS Shipping"
-msgstr ""
+msgstr "UPS Pristatymas"
 
 #. module: base
 #: selection:ir.attachment,type:0
@@ -17251,7 +17341,7 @@ msgstr "URL"
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_l10n_us_check_printing
 msgid "US Check Printing"
-msgstr ""
+msgstr "US Čekių spausdinimas"
 
 #. module: base
 #: selection:res.company,rml_paper_format:0
@@ -17361,7 +17451,7 @@ msgstr "Jungtinės Valstijos - apskaita"
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_delivery_usps
 msgid "United States Postal Service (USPS) Shipping"
-msgstr ""
+msgstr "United States Postal Service (USPS) Pristatymas"
 
 #. module: base
 #: selection:ir.module.module.dependency,state:0
@@ -17978,7 +18068,7 @@ msgstr ""
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_web_gantt
 msgid "Web Gantt"
-msgstr ""
+msgstr "Web Gantt"
 
 #. module: base
 #: model:ir.model.fields,field_description:base.field_ir_ui_menu_web_icon
@@ -18180,6 +18270,9 @@ msgid ""
 "When a relationship field is selected as first field, this field lets you "
 "select the target field within the destination document model (sub-model)."
 msgstr ""
+"Kai santykio laukas yra  pasirinktas kaip pirmasis laukas, šis laukas "
+"leidžia jums pasirinkti tikslinį lauką tikslo dokumento modelyje ar "
+"submodelyje."
 
 #. module: base
 #: model:ir.model.fields,help:base.field_ir_act_server_sub_object
@@ -18348,7 +18441,7 @@ msgstr "Darbo priemonės"
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_payment_sips
 msgid "Worldline SIPS"
-msgstr ""
+msgstr "Worldline SIPS"
 
 #. module: base
 #: model:ir.model.fields,field_description:base.field_ir_model_access_perm_write
@@ -18367,6 +18460,8 @@ msgid ""
 "Write Python code that the action will execute. Some variables are available"
 " for use; help about pyhon expression is given in the help tab."
 msgstr ""
+"Parašykite Python kodą, kurį įvykdys veiksmas. Galimus naudoti kintamuosius "
+"ir daugiau informacijos apie Python galite rasti \"Pagalbos\" skiltyje."
 
 #. module: base
 #: model:ir.ui.view,arch_db:base.view_server_action_form
