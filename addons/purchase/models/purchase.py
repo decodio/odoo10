@@ -302,6 +302,7 @@ class PurchaseOrder(models.Model):
             'default_use_template': bool(template_id),
             'default_template_id': template_id,
             'default_composition_mode': 'comment',
+            'purchase_mark_rfq_sent': True,
         })
         return {
             'name': _('Compose Email'),
@@ -447,6 +448,16 @@ class PurchaseOrder(models.Model):
                     'currency_id': currency.id,
                     'delay': 0,
                 }
+                # In case the order partner is a contact address, a new supplierinfo is created on
+                # the parent company. In this case, we keep the product name and code.
+                seller = line.product_id._select_seller(
+                    partner_id=line.partner_id,
+                    quantity=line.product_qty,
+                    date=line.order_id.date_order and line.order_id.date_order[:10],
+                    uom_id=line.product_uom)
+                if seller:
+                    supplierinfo['product_name'] = seller.product_name
+                    supplierinfo['product_code'] = seller.product_code
                 vals = {
                     'seller_ids': [(0, 0, supplierinfo)],
                 }
@@ -1179,7 +1190,7 @@ class MailComposeMessage(models.TransientModel):
 
     @api.multi
     def mail_purchase_order_on_send(self):
-        if not self.filtered('subtype_id.internal'):
+        if self._context.get('purchase_mark_rfq_sent'):
             order = self.env['purchase.order'].browse(self._context['default_res_id'])
             if order.state == 'draft':
                 order.state = 'sent'
