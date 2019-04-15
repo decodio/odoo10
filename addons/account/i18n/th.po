@@ -3,22 +3,23 @@
 # * account
 # 
 # Translators:
-# Khwunchai Jaengsawang <khwunchai.j@ku.th>, 2016
-# Martin Trigaux, 2016
-# Prawit Boonthue <prawit.boonthue@gmail.com>, 2016
-# Waratha Kong, 2016
 # Seksan Poltree <seksan.poltree@gmail.com>, 2016
+# Waratha Kong, 2016
 # monchai7 <montchye@gmail.com>, 2016
+# Prawit Boonthue <prawit.boonthue@gmail.com>, 2017
+# Khwunchai Jaengsawang <khwunchai.j@ku.th>, 2017
+# Martin Trigaux, 2017
 # Potsawat Manuthamathorn <firmpotsawat@hotmail.com>, 2018
 # Somchart Jabsung <jabsung.s@gmail.com>, 2018
-# Pornvibool Tippayawat <pornvibool.t@gmail.com>, 2018
+# Pornvibool Tippayawat <pornvibool.t@gmail.com>, 2019
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-26 08:44+0000\n"
-"PO-Revision-Date: 2017-05-26 08:44+0000\n"
-"Last-Translator: Pornvibool Tippayawat <pornvibool.t@gmail.com>, 2018\n"
+"PO-Revision-Date: 2016-09-07 09:15+0000\n"
+"Last-Translator: Pornvibool Tippayawat <pornvibool.t@gmail.com>, 2019\n"
 "Language-Team: Thai (https://www.transifex.com/odoo/teams/41243/th/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -148,7 +149,7 @@ msgstr "เมื่อการบัญชีหรือการสั่ง
 #. module: account
 #: model:ir.ui.view,arch_db:account.view_account_form
 msgid "-> Reconcile"
-msgstr ""
+msgstr "-> กระทบยอด"
 
 #. module: account
 #: model:ir.ui.view,arch_db:account.view_move_line_form
@@ -1675,17 +1676,17 @@ msgstr "จำนวนตามสกุลเงิน"
 #: model:ir.model.fields,field_description:account.field_account_invoice_residual
 #: model:ir.ui.view,arch_db:account.invoice_tree
 msgid "Amount Due"
-msgstr ""
+msgstr "จำนวนค้างชำระ"
 
 #. module: account
 #: model:ir.model.fields,field_description:account.field_account_invoice_residual_company_signed
 msgid "Amount Due in Company Currency"
-msgstr ""
+msgstr "จำนวนค้างชำระตามสกุลเงินของบริษัท"
 
 #. module: account
 #: model:ir.model.fields,field_description:account.field_account_invoice_residual_signed
 msgid "Amount Due in Invoice Currency"
-msgstr ""
+msgstr "จำนวนค้างชำระตามสกุลเงินของใบแจ้งหนี้"
 
 #. module: account
 #: model:ir.model.fields,field_description:account.field_account_invoice_line_price_subtotal_signed
@@ -1721,7 +1722,7 @@ msgstr "ประเภทจำนวน"
 #: code:addons/account/static/src/xml/account_payment.xml:68
 #, python-format
 msgid "Amount:"
-msgstr ""
+msgstr "จำนวน:"
 
 #. module: account
 #: sql_constraint:account.fiscal.position.account:0
@@ -3464,6 +3465,19 @@ msgstr ""
 #. module: account
 #: selection:account.payment.term.line,option:0
 msgid "Day(s) after the invoice date"
+msgstr ""
+
+#. module: account
+#: model:res.company,overdue_msg:base.main_company
+msgid ""
+"Dear Sir/Madam,\n"
+"\n"
+"Our records indicate that some payments on your account are still due. Please find details below.\n"
+"If the amount has already been paid, please disregard this notice. Otherwise, please forward us the total amount stated below.\n"
+"If you have any queries regarding your account, Please contact us.\n"
+"\n"
+"Thank you in advance for your cooperation.\n"
+"Best Regards,"
 msgstr ""
 
 #. module: account
@@ -6855,7 +6869,7 @@ msgstr "ข้อมูลการจ่ายเงิน"
 #: model:ir.model.fields,field_description:account.field_account_payment_journal_id
 #: model:ir.model.fields,field_description:account.field_account_register_payments_journal_id
 msgid "Payment Journal"
-msgstr ""
+msgstr "สมุดรายวันชำระเงิน"
 
 #. module: account
 #: model:ir.ui.view,arch_db:account.view_account_payment_search
@@ -7642,12 +7656,12 @@ msgstr "ลงทะเบียนการจ่ายเงิน"
 #. module: account
 #: model:ir.ui.view,arch_db:account.account_planner
 msgid "Register Payments"
-msgstr ""
+msgstr "ลงทะเบียนการจ่ายเงิน"
 
 #. module: account
 #: model:ir.model,name:account.model_account_register_payments
 msgid "Register payments on multiple invoices"
-msgstr ""
+msgstr "ลงทะเบียนการจ่ายเงินกับใบแจ้งหนี้หลายใบ"
 
 #. module: account
 #: model:ir.ui.view,arch_db:account.account_planner
@@ -7736,12 +7750,12 @@ msgstr "มูลค่าซาก"
 #. module: account
 #: model:ir.model.fields,field_description:account.field_account_move_line_amount_residual
 msgid "Residual Amount"
-msgstr ""
+msgstr "จำนวนคงเหลือ"
 
 #. module: account
 #: model:ir.model.fields,field_description:account.field_account_move_line_amount_residual_currency
 msgid "Residual Amount in Currency"
-msgstr ""
+msgstr "จำนวนคงเหลือตามสกุลเงิน"
 
 #. module: account
 #: model:ir.model.fields,field_description:account.field_account_bank_statement_user_id
@@ -9287,7 +9301,7 @@ msgstr "ที่จะแจ้งหนี้"
 #. module: account
 #: model:ir.ui.view,arch_db:account.invoice_supplier_tree
 msgid "To Pay"
-msgstr ""
+msgstr "ค้างจ่าย"
 
 #. module: account
 #: model:ir.ui.view,arch_db:account.account_planner
@@ -9300,7 +9314,7 @@ msgstr ""
 #. module: account
 #: model:ir.ui.view,arch_db:account.invoice_supplier_tree
 msgid "To pay"
-msgstr ""
+msgstr "ค้างจ่าย"
 
 #. module: account
 #: code:addons/account/models/account_move.py:847
