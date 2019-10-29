@@ -578,10 +578,10 @@ class QuantPackage(models.Model):
     """ Packages containing quants and/or other packages """
     _name = "stock.quant.package"
     _description = "Physical Packages"
-    _parent_name = "parent_id"
-    _parent_store = True
-    _parent_order = 'name'
-    _order = 'parent_left'
+    #_parent_name = "parent_id"
+    #_parent_store = True
+    #_parent_order = 'name'
+    _order = 'name'
 
     name = fields.Char(
         'Package Reference', copy=False, index=True,
@@ -594,17 +594,17 @@ class QuantPackage(models.Model):
     ancestor_ids = fields.One2many('stock.quant.package', string='Ancestors', compute='_compute_ancestor_ids')
     children_quant_ids = fields.One2many('stock.quant', string='All Bulk Content', compute='_compute_children_quant_ids')
     children_ids = fields.One2many('stock.quant.package', 'parent_id', 'Contained Packages', readonly=True)
-    parent_left = fields.Integer('Left Parent', index=True)
-    parent_right = fields.Integer('Right Parent', index=True)
+    # parent_left = fields.Integer('Left Parent', index=True)
+    # parent_right = fields.Integer('Right Parent', index=True)
     packaging_id = fields.Many2one(
         'product.packaging', 'Package Type', index=True,
         help="This field should be completed only if everything inside the package share the same product, otherwise it doesn't really makes sense.")
     location_id = fields.Many2one(
         'stock.location', 'Location', compute='_compute_package_info', search='_search_location',
-        index=True, readonly=True)
+        index=True, readonly=True, store=True)
     company_id = fields.Many2one(
         'res.company', 'Company', compute='_compute_package_info', search='_search_company',
-        index=True, readonly=True)
+        index=True, readonly=True, store=True)
     owner_id = fields.Many2one(
         'res.partner', 'Owner', compute='_compute_package_info', search='_search_owner',
         index=True, readonly=True)
