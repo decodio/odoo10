@@ -12,7 +12,7 @@ CREATE EXTENSION IF NOT EXISTS "postgres_fdw";
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 CREATE EXTENSION IF NOT EXISTS "ltree";
 CREATE EXTENSION IF NOT EXISTS "hstore";
-CREATE EXTENSION IF NOT EXISTS plpythonu;
+-- pg12 CREATE EXTENSION IF NOT EXISTS plpythonu;
 
 -------------------------------------------------------------------------
 -- Database wide IR dictionary
