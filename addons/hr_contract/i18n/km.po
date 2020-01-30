@@ -147,7 +147,7 @@ msgstr "ឈ្មោះសំរាប់បង្ហាញ"
 #. module: hr_contract
 #: model:ir.ui.view,arch_db:hr_contract.hr_contract_view_form
 msgid "Duration"
-msgstr ""
+msgstr "អំឡុងពេល"
 
 #. module: hr_contract
 #: model:ir.model,name:hr_contract.model_hr_employee
@@ -216,7 +216,7 @@ msgstr ""
 #. module: hr_contract
 #: model:ir.ui.view,arch_db:hr_contract.hr_contract_view_form
 msgid "Information"
-msgstr ""
+msgstr "ពត៌មាន"
 
 #. module: hr_contract
 #: model:ir.model.fields,field_description:hr_contract.field_hr_employee_manager
@@ -231,7 +231,7 @@ msgstr "ការងារ"
 #. module: hr_contract
 #: model:ir.model.fields,field_description:hr_contract.field_hr_contract_job_id
 msgid "Job Title"
-msgstr ""
+msgstr "ចំណងជើងការងារ"
 
 #. module: hr_contract
 #: model:ir.model.fields,field_description:hr_contract.field_hr_contract___last_update
@@ -280,7 +280,7 @@ msgstr "កំណត់សម្គាល់"
 #. module: hr_contract
 #: model:ir.model.fields,field_description:hr_contract.field_hr_employee_children
 msgid "Number of Children"
-msgstr ""
+msgstr "ចំនួនកុមារ"
 
 #. module: hr_contract
 #: model:ir.filters,name:hr_contract.contract_open
@@ -290,7 +290,7 @@ msgstr ""
 #. module: hr_contract
 #: model:ir.model.fields,field_description:hr_contract.field_hr_employee_place_of_birth
 msgid "Place of Birth"
-msgstr ""
+msgstr "ទី​កន្លែង​កំណើត"
 
 #. module: hr_contract
 #: selection:hr.contract,state:0

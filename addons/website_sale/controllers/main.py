@@ -759,7 +759,13 @@ class WebsiteSale(http.Controller):
                 acquirer.button = acquirer_button
                 values['acquirers'].append(acquirer)
 
-            values['tokens'] = request.env['payment.token'].search([('partner_id', '=', order.partner_id.id), ('acquirer_id', 'in', acquirers.ids)])
+            # Some saved token will no longer work correctly, simply disable them - the customer can still easily use the payment form
+            disabled_s2s_providers = request.env['payment.acquirer'].get_disabled_s2s_providers()
+            values['tokens'] = request.env['payment.token'].search([
+                ('partner_id', '=', order.partner_id.id),
+                ('acquirer_id', 'in', acquirers.ids),
+                ('acquirer_id.provider', 'not in', disabled_s2s_providers)
+            ])
 
         return request.render("website_sale.payment", values)
 
@@ -979,7 +985,7 @@ class WebsiteSale(http.Controller):
 
     @http.route(['/shop/get_unit_price'], type='json', auth="public", methods=['POST'], website=True)
     def get_unit_price(self, product_ids, add_qty, **kw):
-        products = request.env['product.product'].with_context({'quantity': add_qty}).browse(product_ids)
+        products = request.env['product.product'].with_context(quantity=add_qty).browse(product_ids)
         return {product.id: product.website_price / add_qty for product in products}
 
     # ------------------------------------------------------
