@@ -371,6 +371,7 @@ class Channel(models.Model):
         if partners_to:
             partners_to.append(self.env.user.partner_id.id)
             # determine type according to the number of partner in the channel
+            # DECODIO:MF make array_agg result type compatible with input parameters in case of bigint
             self.env.cr.execute("""
                 SELECT P.channel_id as channel_id
                 FROM mail_channel C, mail_channel_partner P
@@ -379,7 +380,7 @@ class Channel(models.Model):
                     AND P.partner_id IN %s
                     AND channel_type LIKE 'chat'
                 GROUP BY P.channel_id
-                HAVING array_agg(P.partner_id ORDER BY P.partner_id) = %s
+                HAVING CAST(array_agg(P.partner_id ORDER BY P.partner_id) AS BIGINT[]) = CAST(%s AS BIGINT[])
             """, (tuple(partners_to), sorted(list(partners_to)),))
             result = self.env.cr.dictfetchall()
             if result:
