@@ -49,6 +49,7 @@ class BusPresence(models.Model):
             if datetime.datetime.strptime(presence.last_presence, DEFAULT_SERVER_DATETIME_FORMAT) < last_presence:
                 values['last_presence'] = last_presence.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
             # Hide transaction serialization errors, which can be ignored, the presence update is not essential
+            # KGB Can we comment 2 lines below to avoid locking errors
             with tools.mute_logger('odoo.sql_db'):
                 presence.write(values)
         # avoid TransactionRollbackError
