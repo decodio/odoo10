@@ -124,7 +124,11 @@ var GaugeWidget = AbstractField.extend({
             transition.attrTween("d", function(d) {
                 var interpolate = d3.interpolate(d.endAngle, newAngle);
                 return function (t) {
-                    d.endAngle = interpolate(t);
+                    var interpolated_value = interpolate(t);
+                    if (interpolated_value > Math.PI/2){
+                        interpolated_value = Math.PI/2;
+                    }
+                    d.endAngle = interpolated_value;
                     return arc(d);
                 };
             });
@@ -133,7 +137,6 @@ var GaugeWidget = AbstractField.extend({
         var flag_open = false;
         if (this.options.on_change) {
             var $svg = this.$el.find('svg');
-
             this.$el.click(function (event) {
                 event.stopPropagation();
                 flag_open = false;
