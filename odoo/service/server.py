@@ -439,7 +439,7 @@ class GeventServer(CommonServer):
                     self.client_address = '<local>'
                 # other cases are handled inside WSGIHandler
                 try:
-                    return super().format_request()
+                    return super(ProxyHandler, self).format_request()
                 finally:
                     self.client_address = old_address
 
