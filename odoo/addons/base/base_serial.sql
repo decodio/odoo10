@@ -7,7 +7,7 @@
 -------------------------------------------------------------------------
 CREATE EXTENSION IF NOT EXISTS "unaccent";
 CREATE EXTENSION IF NOT EXISTS "tablefunc";
-CREATE EXTENSION IF NOT EXISTS "adminpack";
+--CREATE EXTENSION IF NOT EXISTS "adminpack";
 CREATE EXTENSION IF NOT EXISTS "postgres_fdw";
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 CREATE EXTENSION IF NOT EXISTS "ltree";
